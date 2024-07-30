@@ -1,0 +1,6 @@
+transformers
+torch
+faiss-cpu
+requests
+flask
+flask-socketio

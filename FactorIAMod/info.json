@@ -1,0 +1,8 @@
+{
+  "name": "FactorIAMod",
+  "version": "1.0.0",
+  "title": "FactorIA Mod",
+  "author": "Genlikan",
+  "description": "A mod to interact with LLMs via Python",
+  "factorio_version": "1.1"
+}

@@ -2,9 +2,11 @@ import os
 from llama_cpp import Llama
 from llama_cpp_agent import LlamaCppFunctionTool, FunctionCallingAgent, MessagesFormatterType
 from llama_cpp_agent.providers import LlamaCppPythonProvider
-from llama_cpp_agent.chat_history import BasicChatHistory, BasicChatMessageStore, BasicChatHistoryStrategy
+# from llama_cpp_agent.chat_history import BasicChatHistory, BasicChatMessageStore, BasicChatHistoryStrategy
 
-from api import get_inventory, get_recipe, get_all_items, get_technologies, get_technology_info, get_all_technologies
+# from game_api import get_inventory, get_recipe, get_all_items, get_technologies, get_technology_info, get_all_technologies
+
+from model_tools import get_player_inventory, calculate_max_items, find_closest_item_name, theoretical_requirements
 # from todo import add_todo_item, get_todo_list, update_todo_status
 # from retriever import Retriever
 # import torch
@@ -12,7 +14,10 @@ from api import get_inventory, get_recipe, get_all_items, get_technologies, get_
 # Load pre-trained model
 
 # model_path = os.getenv("USERPROFILE") + "/.cache/huggingface/hub/models--QuantFactory--Meta-Llama-3-8B-Instruct-GGUF-v2/snapshots/94f17b2f2d72645fce9555f0395954a34db24e1e/Meta-Llama-3-8B-Instruct-v2.Q8_0.gguf"
-model_path = os.getenv("USERPROFILE") + r"\.cache\lm-studio\models\lmstudio-community\Meta-Llama-3.1-8B-Instruct-GGUF\Meta-Llama-3.1-8B-Instruct-Q4_K_M-take2.gguf"
+# model_path = os.getenv("USERPROFILE") + "/.cache/lm-studio/models/lmstudio-community/Meta-Llama-3.1-8B-Instruct-GGUF/Meta-Llama-3.1-8B-Instruct-Q4_K_M-take2.gguf"
+# model_path = os.getenv("USERPROFILE") + "/.cache/lm-studio/models/lmstudio-community/Meta-Llama-3.1-8B-Instruct-GGUF/Meta-Llama-3.1-8B-Instruct-Q4_K_M.gguf"
+model_path = os.getenv("USERPROFILE") + "/.cache/lm-studio/models/lmstudio-community/Meta-Llama-3.1-8B-Instruct-GGUF/Meta-Llama-3.1-8B-Instruct-Q8_0.gguf"
+
 
 print(model_path)
 # use_gpu = torch.cuda.is_available()
@@ -50,11 +55,12 @@ provider = LlamaCppPythonProvider(llm)
 system_prompt = """
     You are a smart and helpful gaming assistant for the game Factorio. 
     You provide accurate and concise information, about the game or anything else.
-    You can retrieve player inventory, get item recipes, list all items in the game.
+    You can retrieve player inventory, find_closest_item_name, theoretical_requirements, or calculate_max_items in the game.
     Help the player to the best of your abilities.
-    If the player asks for how much of an item they can make, check the recipe for the item and compare that to the items they have in their inventory.
-    Sometimes, some recipes may require intermediate products to make, and the player may have the items to make them, based on what they have in their inventory, let them know the total of the item they can make.
-    If the player doesn't have enough to make the item, explain to the player what else do they need and how much.
+    If the player asks for how much of an item they can craft, please use the function calculate_max_items(item_name), this function already considers the player's inventory and will have information about what else the player may need.
+    The player may misspell some items, you may use find_closest_item_name to check for the nearest name the player may be referring to and help them.
+    The player may not have the items available to craft, but may want to plan for it, inform the player with the theoretical_requirements function.
+    If the player doesn't have enough to make the item, be exact and explain to the player the exact amount of what else do they need and how much.
     If you're not certain about the answer, please ask or say you're not sure.
     """
 # context = f"System: {system_prompt}\n"
@@ -144,9 +150,13 @@ conversation_history = []
 
 def get_tools():
     return [
-        LlamaCppFunctionTool(get_inventory),
-        LlamaCppFunctionTool(get_recipe),
-        LlamaCppFunctionTool(get_all_items),
+        LlamaCppFunctionTool(get_player_inventory),
+        # LlamaCppFunctionTool(get_item_recipe),
+        LlamaCppFunctionTool(calculate_max_items),
+        LlamaCppFunctionTool(find_closest_item_name),
+        LlamaCppFunctionTool(theoretical_requirements),
+        # LlamaCppFunctionTool(get_all_item_names),
+        # LlamaCppFunctionTool(get_all_items),
         # LlamaCppFunctionTool(get_technologies),
         # LlamaCppFunctionTool(get_technology_info),
         # LlamaCppFunctionTool(get_all_technologies),

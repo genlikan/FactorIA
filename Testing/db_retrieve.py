@@ -1,4 +1,5 @@
 import sqlite3
+from difflib import get_close_matches
 
 def get_recipe_from_db(item_name: str):
     # Connect to SQLite database
@@ -59,6 +60,57 @@ def get_subgroup_from_db(item_name):
         return result[0]  # Return the subgroup
     else:
         return None  # Return None if the item was not found
+
+def list_all_item_names_from_db():
+    """
+    List all item names in the 'items'.
+
+    Returns:
+        list: A list of item names.
+    """
+    # Connect to the SQLite database
+    conn = sqlite3.connect('factoria.db')
+    cursor = conn.cursor()
+
+    # Execute the query to fetch all item names
+    cursor.execute("SELECT name FROM items")
+
+    # Retrieve all results
+    rows = cursor.fetchall()
+
+    # Close the connection
+    conn.close()
+
+    # Extract item names from the rows and return them as a list
+    item_names = [row[0] for row in rows]
+    return item_names
+
+def find_closest_item_name_from_db(input_name):
+    """
+    Find the closest name to the input_name from the list of item names in the database.
+
+    Args:
+        input_name (str): The name to find the closest match for.
+
+    Returns:
+        str: The closest name found in the database.
+    """
+    item_names = list_all_item_names_from_db()
+    closest_matches = get_close_matches(input_name, item_names, n=1, cutoff=0.6)
+    
+    if closest_matches:
+        return closest_matches[0]
+    else:
+        return None
+
+# Example usage:
+# input_name = "burner turbine "
+# closest_name = find_closest_item_name_from_db(input_name)
+# if closest_name:
+#     print(f"The closest name to '{input_name}' is '{closest_name}'.")
+#     print(get_recipe_from_db(closest_name))
+# else:
+#     print(f"No close match found for '{input_name}'.")
 
 # # Example usage
 # item_name = 'iron-plate'

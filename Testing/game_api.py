@@ -1,6 +1,9 @@
 import os
+import time
 import json
 from mcrcon import MCRcon
+from functools import lru_cache
+
 RCON_HOST = "localhost"
 RCON_PORT = 25575
 RCON_PASSWORD = "your_password"
@@ -24,6 +27,14 @@ def read_file(filename):
         time.sleep(0.1)
     with open(filepath, "r") as file:
         return file.read()
+
+def pretty_print_json(json_string):
+    try:
+        data = json.loads(json_string)
+        return json.dumps(data, indent=4)
+    except json.JSONDecodeError as e:
+        print(f"Failed to decode JSON: {e}")
+        return json_string
 
 # =======Player Info===========
 
@@ -77,28 +88,18 @@ def get_all_technologies(debug=False):
     json_data = read_file("all_technologies.json")
     return json.loads(json_data)
 
-# ====Example Usage====
-# get_player_name(debug=True)
-# get_inventory(debug=True)
-# get_all_items(debug=True)
-# get_all_items_info(debug=True)
-# get_recipe("inserter",debug=True)
 
-
-
+# =======Player Info===========
+# print(get_player_name(debug=True))
 # print(get_inventory(debug=True))
-# print(get_recipe("long-handed-inserter",debug=True))
-# print(get_recipe("fast-inserter",debug=True))
-# print(get_recipe("electronic-circuit",debug=True))
 
-# from db_retrieve import get_recipe_from_db
+# =========Game Items============
+# print(get_all_items(debug=True))
+# print(get_all_items_info(debug=True))
+# print(get_recipe("inserter",debug=True))
 
+# =========Game Technologies============
+# print(get_technologies(debug=True))
+# print(get_technology_info("fusion-reactor-equipment",debug=True))
+# print(get_all_technologies(debug=True))
 
-
-
-# test_list = ["steel-chest","fast-splitter","fast-inserter","inserter","pipe"]
-
-# for item in test_list:
-#     inventory = get_inventory()
-#     max_craft = calculate_max_craftable(item, inventory)
-#     print(f'Number of {item}: {max_craft}')

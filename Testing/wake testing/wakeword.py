@@ -5,15 +5,22 @@ import os
 import subprocess
 import threading
 from queue import Queue
-from init_db import setup_database
-from game_api import get_player_name
-from model import generate_response
+from llama_cpp import Llama
 import pyttsx3
-# from todo import setup_database
-# from reminder import start_reminder_thread
 
 # Load the Whisper model
 model = whisper.load_model("base")
+
+# Initialize the Llama model
+model_path = os.getenv("USERPROFILE") + "/.cache/lm-studio/models/lmstudio-community/Meta-Llama-3.1-8B-Instruct-GGUF/Meta-Llama-3.1-8B-Instruct-Q8_0.gguf"
+print(model_path)
+llm = Llama(
+    model_path=model_path, 
+    n_gpu_layers=-1,
+    chat_format="llama-3",
+    verbose=True,
+    n_ctx=8192
+)
 
 # Function to check if FFmpeg is installed
 def check_ffmpeg():
@@ -101,6 +108,21 @@ class _TTS:
 def speak_response(text):
     tts_queue.put(text)
 
+messages = [
+    {"role": "system", "content": "You are a helpful assistant."}
+]
+def generate_response(prompt):
+    print("Prompt received:", prompt)
+    messages.append({"role": "user", "content": prompt})
+    result = llm.create_chat_completion(
+        messages=messages,
+        max_tokens=48,
+        stop=["Q:"],  # Stop conditions
+        # stop=["Q:", "\n"],  # Stop conditions
+    )
+    print(result)
+    return result["choices"][0]["message"]["content"].strip()
+
 # Text-to-speech thread function
 def tts_worker():
     while True:
@@ -114,7 +136,7 @@ def tts_worker():
         print("Task is now done.")
         tts_queue.task_done()
 
-# Main function to handle the voice wake command and other functionalities
+# Main function to handle the voice wake command
 def listen_and_transcribe(device_index):
     while True:
         # Record audio for wake word
@@ -139,33 +161,34 @@ def listen_and_transcribe(device_index):
                     query_transcription = recognize_speech_from_audio("query.wav").lower().strip()
                     print(f"Your question: {query_transcription}")
 
-                    if query_transcription == "exit":
+                    if query_transcription == "exit" or "exit.":
                         print("Exit command detected. Shutting down.")
                         speak_response("Goodbye!")
                         tts_queue.join()  # Ensure the TTS queue is processed
                         break
 
                     # Generate response using Llama model
-                    response = generate_response(query_transcription)
-                    print(type(response))
-                    print(response[0]["arguments"]["content"])
-                    response = response[0]["arguments"]["content"]
-                    print(f"Llama response: {response}")
-                    speak_response(response)
+                    llm_response = generate_response(query_transcription)
+                    print(f"Llama response: {llm_response}")
+                    speak_response(llm_response)
                     tts_queue.join()  # Ensure the TTS queue is processed
 
         else:
             print("Audio file not found. Please check the recording process.")
 
-def main():
-    setup_database()
+if __name__ == "__main__":
+    tts_queue = Queue()
+    
+    if not check_ffmpeg():
+        print("FFmpeg is not installed or not found in the system PATH.")
+        exit()
 
     print("Listing all available audio input devices:")
     devices = list_audio_devices()
 
     if not devices:
         print("No audio input devices found.")
-        return
+        exit()
 
     device_index = int(input("Enter the device index you want to use: "))
 
@@ -173,26 +196,8 @@ def main():
     tts_thread = threading.Thread(target=tts_worker)
     tts_thread.start()
 
-    try:
-        player_name = get_player_name()
-        print(f"Greetings {player_name}!")
-        speak_response(f"Greetings {player_name}!")
-        tts_queue.join()  # Ensure the TTS queue is processed
-    except Exception as e:
-        print("Game not Launched", e)
-        speak_response("Game not Launched")
-        tts_queue.join()  # Ensure the TTS queue is processed
-
     # Start the listening and transcribing process
     listen_and_transcribe(device_index)
 
     tts_queue.put(None)  # Signal the TTS worker to exit
     tts_thread.join()  # Wait for the TTS worker thread to finish
-
-if __name__ == "__main__":
-    if not check_ffmpeg():
-        print("FFmpeg is not installed or not found in the system PATH.")
-        exit()
-
-    tts_queue = Queue()
-    main()

@@ -83,7 +83,7 @@ def calculate_max_items(item_name: str):
     else:
         return f"Maximum {item_name}s that can be made: {max_items} with a total of {total_produced}"
 
-print(calculate_max_items("gun-turret"))
+# print(calculate_max_items("gun-turret"))
 # ============================================================
 
 def can_theoretically_craft(item_name, inventory, count):
@@ -128,7 +128,7 @@ def theoretical_requirements(item_name: str, count: int):
         missing_items_str = ', '.join([f"{item}: {amount}" for item, amount in missing_items.items()])
         return f"To craft {count} {item_name}(s), you need: {missing_items_str}"
 
-print(theoretical_requirements("laser-turret",12))
+# print(theoretical_requirements("laser-turret",12))
 
 def find_closest_item_name(item_name: str):
     """

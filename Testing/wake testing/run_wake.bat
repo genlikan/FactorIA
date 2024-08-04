@@ -1,2 +1,0 @@
-python wakeword.py
-pause

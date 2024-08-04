@@ -2,3 +2,6 @@
 FactorIAMod - Appdata.lnk
 script-output - Appdata.lnk
 Testing/mains.sublime-workspace
+/Testing/ignorethis
+Testing/wake_word.wav
+*.wav

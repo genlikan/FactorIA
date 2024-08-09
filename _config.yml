@@ -7,7 +7,7 @@ nav:
   - title: "Home"
     url: /
   - title: "TODO"
-    url: /pages/TODO.md
+    url: /pages/TODO.html
   - title: "Experiments"
-    url: /pages/Experiments.md
+    url: /pages/Experiments.html
 

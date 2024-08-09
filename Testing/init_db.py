@@ -7,7 +7,7 @@
 import sqlite3
 import os
 
-from game_api import get_all_items, get_all_items_info, get_inventory, get_recipe
+from game_api import get_all_items_info, get_recipe
 
 def setup_database():
     print("===Initializing factoria.db===")

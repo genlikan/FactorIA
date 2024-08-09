@@ -41,7 +41,6 @@ def pretty_print_json(json_string):
 def get_player_name(debug=False):
     send_rcon_command('/get_player_name', debug)
     json_data = read_file("player_name.json")
-    print("==API== get_player_name:", json_data)
     return json_data
 
 def get_inventory(debug=False):

@@ -5,14 +5,14 @@
 
 /* Custom styles start here */
 
-/* Change color of the label text when the checkbox is checked */
-input[type="checkbox"].task-list-item-checkbox:checked + label {
-    color: green;
-    text-decoration: line-through; /* Optional: keep the strikethrough */
-}
+// /* Change color of the label text when the checkbox is checked */
+// input[type="checkbox"].task-list-item-checkbox:checked + label {
+//     color: green;
+//     text-decoration: line-through; /* Optional: keep the strikethrough */
+// }
 
-/* Change color of the actual checkbox when it's checked and disabled */
-input[type="checkbox"].task-list-item-checkbox:checked:disabled {
-    background-color: green !important;
-    border-color: green !important;
-}
+// /* Change color of the actual checkbox when it's checked and disabled */
+// input[type="checkbox"].task-list-item-checkbox:checked:disabled {
+//     background-color: green !important;
+//     border-color: green !important;
+// }

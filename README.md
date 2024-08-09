@@ -13,12 +13,12 @@ FactorIA is an innovative project that combines the automation and factory-build
 
 ## Installation & Setup
 
-# Installing FactorIAMod for Factorio
+### Installing FactorIAMod for Factorio
 1. Download the "FactorIAMod" folder from this repository.
-2. Place the folder into "<AppData>\Roaming\Factorio\mods".
+2. Place the folder into "{AppData}\Roaming\Factorio\mods".
 3. The mod will show up under "Mods" as "FactorIA Mod" to be enabled.
 
-# Enabling RCON (Remote Console) in Factorio
+### Enabling RCON (Remote Console) in Factorio
 1. In Factorio's Main Men, hold the Ctrl + Alt and press "Settings".
 2. The option "The rest" will appear.
 3. Under "Other settings" are the configurations for:

@@ -33,13 +33,13 @@ FactorIA is an innovative project that combines the automation and factory-build
 
 Factorio version 1.1.109 (build 62320, win64), Vanilla
 
-OS:	Windows 11 Pro, 23H2, 64-bit
-OS build:	22631.3880
-Experience:	Windows Feature Experience Pack 1000.22700.1020.0
+- OS:	Windows 11 Pro, 23H2, 64-bit
+- OS build:	22631.3880
+- Experience:	Windows Feature Experience Pack 1000.22700.1020.0
 
-CPU:	12th Gen Intel(R) Core(TM) i9-12900K   3.20 GHz
-GPU:	NVIDIA GeForce RTX 3090
-GPU Driver Version:	32.0.15.6070
-RAM: 64.0 GB DDR5
+- CPU:	12th Gen Intel(R) Core(TM) i9-12900K   3.20 GHz
+- GPU:	NVIDIA GeForce RTX 3090
+- GPU Driver Version:	32.0.15.6070
+- RAM: 64.0 GB DDR5
 
-Python: 3.11.5
+- Python: 3.11.5

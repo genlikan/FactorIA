@@ -2,3 +2,9 @@
 ---
 
 @import "{{ site.theme }}";
+
+/* Change color of checked checkboxes in markdown TODO lists */
+input[type="checkbox"]:checked + label {
+    color: green;
+    text-decoration: line-through; /* Optional: keep the strikethrough */
+}

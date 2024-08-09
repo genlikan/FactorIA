@@ -3,8 +3,16 @@
 
 @import "{{ site.theme }}";
 
-/* Change color of checked checkboxes in markdown TODO lists */
-input[type="checkbox"]:checked + label {
+/* Custom styles start here */
+
+/* Change color of the label text when the checkbox is checked */
+input[type="checkbox"].task-list-item-checkbox:checked + label {
     color: green;
     text-decoration: line-through; /* Optional: keep the strikethrough */
+}
+
+/* Change color of the actual checkbox when it's checked and disabled */
+input[type="checkbox"].task-list-item-checkbox:checked:disabled {
+    background-color: green;
+    border-color: green;
 }

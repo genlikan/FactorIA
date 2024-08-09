@@ -11,7 +11,7 @@ FactorIA is an innovative project that combines the automation and factory-build
 - [X] **Calculate Crafts for Items *Not* in Player's Inventory:** Estimate crafting requirements for items that are not currently in the player's inventory.
 - [X] **Natural Language Support:** Ask questions and get answers within the game using Text-to-speech and Speech-to-text to converse with the model with the wake word "Listen".
 - [ ] **Real-Time Optimization Tips:** Receive suggestions on how to improve efficiency in real-time as you build and manage your factory.
-- [ ] Reminders and TO-DO.
+- [ ] Time-based Reminders and TO-DO.
       
 ## Documentation
 - [ ] Create a detailed user guide on installation and usage.

@@ -1,6 +1,10 @@
-transformers
-torch
-faiss-cpu
-requests
-flask
-flask-socketio
+api==0.0.7
+faiss_cpu==1.8.0.post1
+llama_cpp_agent==0.2.35
+mcrcon==0.7.0
+numpy==2.0.1
+openai_whisper==20231117
+PyAudio==0.2.14
+pyttsx3==2.90
+torch==2.3.0+cu121
+transformers==4.43.2

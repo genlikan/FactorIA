@@ -2,4 +2,4 @@ remote_theme: pages-themes/slate@v0.2.0
 plugins:
 - jekyll-remote-theme # add this line to the plugins list if you already have one
 title: "FactorIA"
-description: "An Intelligent Assistant for the game Factorio <img src='/assets/images/factorio.ico' alt='Factorio Logo' style='vertical-align: middle; margin-left: 10px; max-height: 20px;'>"
+description: "An Intelligent Assistant for the game Factorio <img src='/FactorIA/assets/images/factorio.ico' alt='Factorio Logo' style='vertical-align: middle; margin-left: 10px; max-height: 20px;'>"

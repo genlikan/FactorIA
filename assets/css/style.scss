@@ -13,6 +13,6 @@ input[type="checkbox"].task-list-item-checkbox:checked + label {
 
 /* Change color of the actual checkbox when it's checked and disabled */
 input[type="checkbox"].task-list-item-checkbox:checked:disabled {
-    background-color: green;
-    border-color: green;
+    background-color: green !important;
+    border-color: green !important;
 }

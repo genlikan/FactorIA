@@ -6,4 +6,4 @@ description: "An Intelligent Assistant for the game Factorio <img src='/FactorIA
 
 # Include custom CSS
 include:
-  - FactorIA/assets/css/custom.css
+  - assets/css/custom.css

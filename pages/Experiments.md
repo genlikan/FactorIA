@@ -160,7 +160,8 @@ Several models were tested in their ability to solve complex recipes such as ins
 | **Gemma2 27B**          | 1                    | 1                    | 1                    |
 | **Claude 3.5 Sonnet**   | 1                    | 1                    | 1                    |
 | **Llama3.1-8B-I-Q8_0**  | 1                    | 0                    | 3                    |
-*Attempted to craft all Iron Gear Wheels first, resulting in 0 Iron Plates left for Electronic Circuits.
+
+\*Attempted to craft all Iron Gear Wheels first, resulting in 0 Iron Plates left for Electronic Circuits.
 
 Prompt 1:
 Given that the player's inventory has: 10 Iron Plates and 2 Copper Plates.
@@ -172,10 +173,10 @@ The recipe for 1 Inserter is: 1 Iron Plate, 1 Iron Gear Wheel, and 1 Electronic 
 
 What is the maximum amount of Inserters the player can craft?
 
-============================================================
+<!-- ============================================================ -->
 Expected Response:
 Able to craft 1 Inserter.
-============================================================
+<!-- ============================================================ -->
 
 | **Models**              | **#1**               | **#2**               | **#3**               |
 |-------------------------|----------------------|----------------------|----------------------|
@@ -195,10 +196,10 @@ The recipe for 1 Inserter is: 1 Iron Plate, 1 Iron Gear Wheel, and 1 Electronic 
 
 What is the maximum amount of Inserters the player can craft?
 
-============================================================
+<!-- ============================================================ -->
 Expected Response:
 Able to craft 250 Inserter.
-============================================================
+<!-- ============================================================ -->
 
 
 In the Prompt #1, almost all models were able to decern that only 1 inserter could be crafted. Right as I was about to formally benchmark the models, GPT-4o decided to perform the heuristic wrong, but would have otherwise reported 1.

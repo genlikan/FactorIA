@@ -8,6 +8,9 @@ FactorIA is an innovative project that combines the automation and factory-build
 
 [Experiments](pages/Experiments.md) | [TODO](pages/TODO.md)
 
+
+![alt text](assets/images/main.py__Factorio.drawio.png "Python Flowchart")
+
 ## Intelligent Assistant Features
 - **Retrieve and Accurately Report Player's Inventory:** Automatically fetch and display the contents of the player's inventory.
 - **Calculate Maximum Craft for Any Item with Player's Inventory:** Determine the maximum number of any item that can be crafted using the current inventory.

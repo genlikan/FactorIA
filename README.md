@@ -6,7 +6,7 @@
 
 FactorIA is an innovative project that combines the automation and factory-building gameplay of Factorio with the advanced capabilities of a Large Language Model (LLM). This repository aims to enhance the Factorio experience by providing intelligent assistance, accurate crafting calculations, optimization suggestions, and interactive support through natural language processing.
 
-[Experiments](pages/Experiments.html) | [TODO](pages/TODO.html)
+[Experiments](pages/Experiments.md) | [TODO](pages/TODO.md)
 
 ## Intelligent Assistant Features
 - **Retrieve and Accurately Report Player's Inventory:** Automatically fetch and display the contents of the player's inventory.

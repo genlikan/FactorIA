@@ -2,7 +2,7 @@ import os
 import time
 import json
 from mcrcon import MCRcon
-from functools import lru_cache
+# from functools import lru_cache
 
 RCON_HOST = "localhost"
 RCON_PORT = 25575

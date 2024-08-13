@@ -1,5 +1,7 @@
 # FactorIA
 
+https://genlikan.github.io/FactorIA/
+
 **Enhancing the Factorio experience by leveraging the strengths of Large Language Models for real-time intelligent assistance.**
 
 ![alt text](assets/images/Player__Factorio.drawio.png "Flowchart")
@@ -44,8 +46,8 @@ FactorIA is an innovative project that combines the automation and factory-build
 Factorio version 1.1.109 (build 62320, win64), Vanilla
 
 - OS:	Windows 11 Pro, 23H2, 64-bit
-- OS build:	22631.3880
-- Experience:	Windows Feature Experience Pack 1000.22700.1020.0
+  - OS build:	22631.3880
+  - Experience:	Windows Feature Experience Pack 1000.22700.1020.0
 
 - CPU:	12th Gen Intel(R) Core(TM) i9-12900K   3.20 GHz
 - GPU:	NVIDIA GeForce RTX 3090

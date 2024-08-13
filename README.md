@@ -32,8 +32,8 @@ FactorIA is an innovative project that combines the automation and factory-build
 1. In Factorio's Main Men, hold the Ctrl + Alt and press "Settings".
 2. The option "The rest" will appear.
 3. Under "Other settings" are the configurations for:
-- "local-rcon-socket"
-- "local-rcon-password"
+  - "local-rcon-socket"
+  - "local-rcon-password"
 4. This enables the connection between the LLM and the game.
 
 ## Usage

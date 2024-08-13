@@ -12,10 +12,14 @@ FactorIA is an innovative project that combines the automation and factory-build
 ![alt text](assets/images/main.py__Factorio.drawio.png "Python Flowchart")
 
 ## Intelligent Assistant Features
-- **Retrieve and Accurately Report Player's Inventory:** Automatically fetch and display the contents of the player's inventory.
-- **Calculate Maximum Craft for Any Item with Player's Inventory:** Determine the maximum number of any item that can be crafted using the current inventory.
-- **Calculate Crafts for Items *Not* in Player's Inventory:** Estimate crafting requirements for items that are not currently in the player's inventory.
-- **Natural Language Support:** Ask questions and get answers within the game using Text-to-speech and Speech-to-text to converse with the model with the wake word "Listen".
+- **Retrieve and Accurately Report Player's Inventory:**
+  - Automatically fetch and display the contents of the player's inventory.
+- **Calculate Maximum Craft for Any Item with Player's Inventory:**
+  - Determine the maximum number of any item that can be crafted using the current inventory.
+- **Calculate Crafts for Items *Not* in Player's Inventory:**
+  - Estimate crafting requirements for items that are not currently in the player's inventory.
+- **Natural Language Support:**
+  - Ask questions and get answers within the game using Text-to-speech and Speech-to-text to converse with the model with the wake word "Listen".
 
 ## Installation & Setup
 

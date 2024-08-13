@@ -4,8 +4,8 @@
 - [X] **Calculate Maximum Craft for Any Item with Player's Inventory:** Determine the maximum number of any item that can be crafted using the current inventory.
 - [X] **Calculate Crafts for Items *Not* in Player's Inventory:** Estimate crafting requirements for items that are not currently in the player's inventory.
 - [X] **Natural Language Support:** Ask questions and get answers within the game using Text-to-speech and Speech-to-text to converse with the model with the wake word "Listen".
-- [ ] **Real-Time Optimization Tips:** Receive suggestions on how to improve efficiency in real-time as you build and manage your factory.
-- [ ] Time-based Reminders and TO-DO.
+- [x] **Real-Time Optimization Tips:** Receive suggestions on how to improve efficiency in real-time as you build and manage your factory. (Depending on the model, milage may vary.)
+
       
 ## Documentation & More
 - [ ] Create a detailed user guide on installation and usage.
@@ -30,6 +30,7 @@
 - [X] Get all technologies in game.
 
 ## Additional Unplanned Features
+- [ ] Time-based Reminders and TO-DO.
 - [ ] Track player's entities.
 - [ ] Report Resource Depletion.
 - [ ] Report Idle Miners.

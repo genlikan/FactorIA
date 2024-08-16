@@ -31,12 +31,12 @@ FactorIA is an innovative project that combines the automation and factory-build
 3. The mod will show up under "Mods" as "FactorIA Mod" to be enabled.
 
 ### Enabling RCON (Remote Console) in Factorio
-1. In Factorio's Main Men, hold the Ctrl + Alt and press "Settings".
+1. In Factorio's Main Menu, hold the Ctrl + Alt and press "Settings".
 2. The option "The rest" will appear.
 3. Under "Other settings" are the configurations for:
   - "local-rcon-socket"
   - "local-rcon-password"
-4. This enables the connection between the LLM and the game.
+4. This enables the connection between the LLM and the game via the game mod.
 
 ## Usage
 

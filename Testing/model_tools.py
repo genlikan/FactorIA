@@ -57,7 +57,7 @@ def calculate_max_items(item_name: str):
     Args:
         item_name(str): the item name to calculate how many the player can craft.
     Returns:
-        str: A string describing the crafting result.
+        str: A string describing the crafting result. Please respond to the player with this string. Does not include the player's inventory.
     """
     # item_name = item_name.lower().replace(" ", "-")
     item_name = find_closest_item_name_from_db(item_name)
@@ -79,9 +79,9 @@ def calculate_max_items(item_name: str):
         can_craft_needed, missing_items = can_craft(item_name, inventory, 1)
 
     if max_items == total_produced:
-        return f"Maximum {item_name}s that can be made with current player inventory: {max_items}"
+        return f"Maximum {item_name}s that can be made with current player inventory: {max_items}."
     else:
-        return f"Maximum {item_name}s that can be made: {max_items} with a total of {total_produced}"
+        return f"Maximum {item_name}s that can be crafted: {max_items}. Which produces {total_produced} {item_name}s."
 
 # print(calculate_max_items("gun-turret"))
 # ============================================================

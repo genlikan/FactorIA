@@ -5,6 +5,7 @@ import subprocess
 import whisper
 from model import generate_response
 from text_to_speech import speak_response, tts_queue
+import time
 
 model = whisper.load_model("base")
 
@@ -120,7 +121,11 @@ def listen_and_transcribe(device_index):
                         break
 
                     # Generate response using Llama model
+                    start_time = time.time()
                     response = generate_response(query_transcription)
+                    end_time = time.time()
+                    elapsed_time = end_time - start_time
+                    print(f"Time taken to receive response: {elapsed_time:.4f} seconds")
                     print(f"Llama response: {response}")
                     speak_response(response)
                     tts_queue.join()  # Ensure the TTS queue is processed

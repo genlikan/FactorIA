@@ -8,19 +8,28 @@ from model_tools import get_player_inventory, calculate_max_items, find_closest_
 # from retriever import Retriever
 
 # Load pre-trained model
+# model_path = os.getenv("USERPROFILE") + "/.cache/lm-studio/models/lmstudio-community/Meta-Llama-3.1-8B-Instruct-GGUF/Meta-Llama-3.1-8B-Instruct-Q3_K_L.gguf"
 model_path = os.getenv("USERPROFILE") + "/.cache/lm-studio/models/lmstudio-community/Meta-Llama-3.1-8B-Instruct-GGUF/Meta-Llama-3.1-8B-Instruct-Q8_0.gguf"
 
 llm = Llama(
     model_path=model_path, 
-    n_gpu_layers=-1,
     chat_format="llama-3",
-    verbose=True,
+    n_gpu_layers=-1,
+    #################
+    use_mlock = True,
+    # n_threads = 4,
+    # n_batch=512,
+    # n_predict = -1,
+    seed = 400,
+    # batch_size=16,
+    # threads=8,
+    verbose=False,
     # n_ctx=2048,       # /4
     # n_ctx=4096,       # /2
     # n_ctx=8192,       # Default
     # n_ctx=16384,      # x2
-    # n_ctx=32768,      # x4
-    n_ctx=49152,      # x6
+    n_ctx=32768,      # x4
+    # n_ctx=49152,      # x6
     # n_ctx=57344,      # x7
     # n_ctx=65536,      # x8 - MAX before performance hit - Preferred for RTX 3090
     # n_ctx=73728,      # x9- VRam Limit
@@ -40,20 +49,26 @@ chat_history_store = BasicChatMessageStore()
 chat_history = BasicChatHistory(
     message_store=chat_history_store, 
     chat_history_strategy=BasicChatHistoryStrategy.last_k_tokens, 
-    k=7000, 
+    k=70000, 
     llm_provider=provider
 )
 
 # System prompt to guide the model's responses
 system_prompt = """
-    You are a smart and helpful gaming helper for the game Factorio. You provide accurate and concise information, about the game or anything else. You can retrieve player inventory, find_closest_item_name, theoretical_requirements, or calculate_max_items in the game.
-    Help the player to the best of your abilities.
-    If the player asks for how much of an item they can craft, please use the function calculate_max_items(item_name), this function already considers the player's inventory and will have information about what else the player may need.
-    The player may misspell some items, you may use find_closest_item_name to check for the nearest name the player may be referring to and help them.
-    The player may not have the items available to craft, but may want to plan for it, inform the player with the theoretical_requirements function.
+    You are a smart and helpful gaming helper for the game Factorio. You provide accurate and concise information, about the game and anything else. 
+    You can retrieve player inventory via get_player_inventory, find_closest_item_name, theoretical_requirements, or calculate_max_items in the game.
+    The player may misspell some items, please use the function find_closest_item_name to check for the nearest item name the player may be referring to.
+    You must help the player to the best of your abilities.
+    The player may ask what they have in their inventory, use the function get_player_inventory to get that information. 
+    If the player asks for how much of an item they can craft, please use the function calculate_max_items(item_name), this function already considers the player's inventory, so you will not need to use the player inventory function, and will have information about what else the player may need.
+    The player may ask hypothetically what they would need to craft some amount of items, inform the player what they need with the theoretical_requirements function.
     If the player doesn't have enough to make the item, be exact and explain to the player the exact amount of what else do they need and how much.
-    If you're not certain about the answer, please ask or say you're not sure.
     The player may ask general questions that do not need any function calls, please answer them to the best of your knowledge anyways.
+    When responding back to the player, be sure to answer with natural language, not in json format.
+    If you're not certain about the answer, please ask the player or say you're not sure.
+    If the player has nothing in their inventory, just let the player know.
+    When asked general questions that may have nothing to do with Factorio, You answer the player regardless.
+    Never mention the word "assistant".
     """
 
 def get_tools():
@@ -85,11 +100,12 @@ agent = FunctionCallingAgent(
     # send_message_to_user_callback=send_message_to_user_callback,
     # allow_parallel_function_calling=True,
     messages_formatter_type=MessagesFormatterType.LLAMA_3,
-    debug_output = True
+    debug_output = True,
+    # debug_output = False
     )
 
 def generate_response(query):
-
+    print("Query:", query)
     response = agent.generate_response(query)
     try:
         actual_response = response[0]["arguments"]["content"]
@@ -104,3 +120,5 @@ def generate_response(query):
     # print(response)
 
     return actual_response
+
+# print(generate_response("How's it going?"))
